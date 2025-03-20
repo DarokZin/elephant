@@ -1,0 +1,74 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6c757d;
+    color: white;
+    padding: 20px;
+}
+.logo {
+    width: 100px;
+    height: 60px;
+    margin-right: 10px;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    background: #495057;
+    overflow: hidden;
+}
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.carousel img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+}
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* script.js */
+document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.querySelector(".carousel-container");
+    const images = document.querySelectorAll(".carousel img");
+    let index = 0;
+    document.querySelector(".next").addEventListener("click", () => {
+        index = (index + 1) % images.length;
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    });
+    document.querySelector(".prev").addEventListener("click", () => {
+        index = (index - 1 + images.length) % images.length;
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    });
+});
